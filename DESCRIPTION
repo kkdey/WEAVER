@@ -1,0 +1,28 @@
+Package: WEAVER
+Type: Package
+Title: Word Enrichment Analysis using Vector Representations 
+Version: 0.99.0
+Date: 2017-05-01
+Author: c(
+    person("Kushal", "Dey", email = "kkdey@uchicago.edu", role = c("aut","cre")))
+Maintainer: Kushal Dey <kkdey@uchicago.edu>
+Description: Performs word and word set enrichment between word2vec models across multiple corpora,
+             word enrichment in left and right context for a given corpora, word set significance,
+             visualization of word sets and robust estimation of word2vec output.
+Depends:
+    R (>= 3.2),
+    ggplot2 (>= 2.1.0),
+    magrittr,
+    visNetwork,
+    fgsea
+Imports: magrittr, fgsea, visNetwork
+Suggests:
+    knitr, Biobase, roxygen2, RColorBrewer, devtools, xtable
+Remotes: bmschmidt/wordVectors,
+         stephens999/ashr
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+URL: https://github.com/kkdey/WEAVER

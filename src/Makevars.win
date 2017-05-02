@@ -1,0 +1,4 @@
+
+PKG_CFLAGS = -lm -pthread -O3 -march=native -Wall -funroll-loops -Wno-unused-result -w
+PKG_LIBS = -pthread $(BLAS_LIBS)
+
