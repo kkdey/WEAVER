@@ -19,7 +19,7 @@ The main contents of this package are functions to do the following.
 - *WSSA* - Word set significance analysis for a topic of interest for a given corpus.
 
 - *Directional word2vec* - A direction based word2vec model implementation that separates out 
-                           the vector representations of the left and right contexts of a word.                                 Highlights enrichment of words in either sides of the context.
+                           the vector representations of the left and right contexts of a word.                               Highlights enrichment of words in either sides of the context.
              
 ## Licenses
 

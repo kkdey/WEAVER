@@ -5,9 +5,10 @@
 \title{Train a model by bi-directional word2vec (biword2vec).}
 \usage{
 train_biword2vec(train_file, output_file_left = "vectors_left.bin",
-  output_file_right = "vectors_right.bin", vectors = 100, threads = 3,
+  output_file_right = "vectors_right.bin",
+  output_file_out = "vectors_out.bin", vectors = 100, threads = 3,
   window = 12, classes = 0, cbow = 0, min_count = 1, iter = 5,
-  force = F, negative_samples = 5)
+  force = F, negative_samples = 0)
 }
 \arguments{
 \item{train_file}{Path of a single .txt file for training. Tokens are split on spaces.}

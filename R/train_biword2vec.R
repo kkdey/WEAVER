@@ -34,10 +34,13 @@
 ##'                          output_file_right = "out_right.bin", threads = 3,
 ##'                          woindow = 5)
 ##' }
-train_biword2vec <- function(train_file, output_file_left = "vectors_left.bin", output_file_right = "vectors_right.bin",
-                           vectors=100,threads=3,window=12,
-                           classes=0,cbow=0,min_count=1,iter=5,force=F,
-                           negative_samples=5)
+train_biword2vec <- function(train_file, 
+                             output_file_left = "vectors_left.bin", 
+                             output_file_right = "vectors_right.bin",
+                             output_file_out = "vectors_out.bin",
+                             vectors=100,threads=3,window=12,
+                             classes=0,cbow=0,min_count=1,iter=5,force=F,
+                             negative_samples=0)
 {
   if (!file.exists(train_file)) stop("Can't find the training file!")
   if (file.exists(output_file_left) && !force) stop("The output file '",
@@ -45,6 +48,9 @@ train_biword2vec <- function(train_file, output_file_left = "vectors_left.bin", 
                                      "' already exists: give a new destination or run with 'force=TRUE'.")
   if (file.exists(output_file_right) && !force) stop("The output file '",
                                      output_file_right ,
+                                     "' already exists: give a new destination or run with 'force=TRUE'.")
+  if (file.exists(output_file_out) && !force) stop("The output file '",
+                                     output_file_out ,
                                      "' already exists: give a new destination or run with 'force=TRUE'.")
 
   train_dir <- dirname(train_file)
@@ -61,15 +67,27 @@ train_biword2vec <- function(train_file, output_file_left = "vectors_left.bin", 
     output_file_right <- file.path(train_dir, output_file_right)
   }
 
+  if(missing(output_file_out)) {
+    output_file_out <- gsub(gsub("^.*\\.", "", basename(train_file)), "bin", basename(train_file))
+    output_file_out <- file.path(train_dir, output_file_out)
+  }
+
   outfile_left_dir <- dirname(output_file_left)
   if (!file.exists(outfile_left_dir)) dir.create(outfile_left_dir, recursive = TRUE)
 
   outfile_right_dir <- dirname(output_file_right)
   if (!file.exists(outfile_right_dir)) dir.create(outfile_right_dir, recursive = TRUE)
 
+  outfile_out_dir <- dirname(output_file_out)
+  if (!file.exists(outfile_out_dir)) dir.create(outfile_out_dir, recursive = TRUE)
+
+  
+
   train_file <- normalizePath(train_file, winslash = "/", mustWork = FALSE)
   output_file_left <- normalizePath(output_file_left, winslash = "/", mustWork = FALSE)
   output_file_right <- normalizePath(output_file_right, winslash = "/", mustWork = FALSE)
+  output_file_out <- normalizePath(output_file_out, winslash = "/", mustWork = FALSE)
+
   # Whether to output binary, default is 1 means binary.
   binary = 1
 
@@ -77,6 +95,7 @@ train_biword2vec <- function(train_file, output_file_left = "vectors_left.bin", 
             train_file = as.character(train_file),
             output_file_left = as.character(output_file_left),
             output_file_right = as.character(output_file_right),
+            output_file_out = as.character(output_file_out),
             binary = as.character(binary),
             dims=as.character(vectors),
             threads=as.character(threads),
@@ -88,7 +107,8 @@ train_biword2vec <- function(train_file, output_file_left = "vectors_left.bin", 
   )
 
  ll <- list()
- ll[["left"]] <-  wordVectors::read.vectors(output_file_left)
- ll[["right"]] <- wordVectors::read.vectors(output_file_right)
+ ll[["in_left"]] <-  wordVectors::read.vectors(output_file_left)
+ ll[["in_right"]] <- wordVectors::read.vectors(output_file_right)
+ ll[["out"]] <- wordVectors::read.vectors(output_file_out)
  return(ll)
 }

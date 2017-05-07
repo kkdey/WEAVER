@@ -2,8 +2,11 @@
 
 export("%>%")
 export(corshrink_word2vec)
+export(prep_word2vec)
 export(train_biword2vec)
+export(train_word2vec)
 export(w2vec_net)
+export(word2phrase)
 export(wsea)
 export(wssa)
 import(ashr)
