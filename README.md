@@ -2,7 +2,7 @@
 
 Word Enrichment Analysis using VEctor Representations
 
-**Author**:  [Kushal K Dey](http://kkdey.github.io/)
+**Author**:  [Kushal K Dey](http://kkdey.github.io/), [Matthew Stephens](http://stephenslab.uchicago.edu/)
 
 ## Summary
 
